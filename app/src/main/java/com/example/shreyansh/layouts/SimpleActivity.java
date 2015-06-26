@@ -24,7 +24,7 @@ public class SimpleActivity extends Activity {
         spinner.setAdapter(adapter);*/
     }
 
-    public void onClickButton(View v) {
+    public void onClickTextView(View v) {
         Toast.makeText(getApplication(), "hello !!", Toast.LENGTH_SHORT).show();
     }
 

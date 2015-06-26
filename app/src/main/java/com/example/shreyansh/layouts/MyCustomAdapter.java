@@ -37,18 +37,37 @@ public class MyCustomAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater inflater = activity.getLayoutInflater();
-        convertView = inflater.inflate(R.layout.clock_text_include, parent, false);
+        MyViewHolder viewHolder;
 
-        ((TextView) convertView.findViewById(R.id.tv1)).setText(studentList.get(position).name);
-        ((TextView) convertView.findViewById(R.id.tv2)).setText(studentList.get(position).fatherName);
-        ((TextView) convertView.findViewById(R.id.tv3)).setText(studentList.get(position).motherName);
+        if(convertView == null) {
+            LayoutInflater inflater = activity.getLayoutInflater();
+            convertView = inflater.inflate(R.layout.clock_text_include, parent, false);
+            viewHolder = new MyViewHolder(convertView);
+            convertView.setTag(viewHolder);
+        } else {
+            viewHolder = (MyViewHolder) convertView.getTag();
+        }
 
-        ImageView iv=(ImageView) convertView.findViewById(R.id.image1);
-        if(position%3 == 0) iv.setImageResource(R.drawable.clock);
-        else if (position%3 == 1) iv.setImageResource(R.drawable.virat);
-        else iv.setImageResource(R.drawable.spiderman);
+        viewHolder.tv1.setText(studentList.get(position).name);
+        viewHolder.tv2.setText(studentList.get(position).fatherName);
+        viewHolder.tv3.setText(studentList.get(position).motherName);
+
+        if(position%3 == 0) viewHolder.image.setImageResource(R.drawable.clock);
+        else if (position%3 == 1) viewHolder.image.setImageResource(R.drawable.virat);
+        else viewHolder.image.setImageResource(R.drawable.spiderman);
 
         return convertView;
+    }
+
+    private class MyViewHolder {
+        ImageView image;
+        TextView tv1,tv2,tv3;
+
+        public MyViewHolder(View view){
+            image = (ImageView) view.findViewById(R.id.image1);
+            tv1 = (TextView) view.findViewById(R.id.tv1);
+            tv2 = (TextView) view.findViewById(R.id.tv2);
+            tv3 = (TextView) view.findViewById(R.id.tv3);
+        }
     }
 }

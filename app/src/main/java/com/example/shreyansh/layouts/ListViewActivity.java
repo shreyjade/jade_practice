@@ -4,14 +4,17 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 
 public class ListViewActivity extends Activity {
 
-    String[] number = {"one", "two","three","four","five","six","seven","eight","nine"};
+    String[] number = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,8 +26,17 @@ public class ListViewActivity extends Activity {
         listView.setAdapter(adapter);*/
 
         ListView listView = (ListView) findViewById(R.id.number_list);
-        MyCustomAdapter adapter=new MyCustomAdapter(Student.getStudentDataForListView(),this);
+        ArrayList<Student> studentsList = Student.getStudentDataForListView();
+        MyCustomAdapter adapter = new MyCustomAdapter(studentsList, this);
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Integer index = position;
+                Toast.makeText(getApplicationContext(), index.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
     @Override

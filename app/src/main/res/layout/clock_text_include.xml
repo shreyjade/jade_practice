@@ -27,8 +27,7 @@
             android:layout_marginRight="@dimen/five"
             android:layout_marginTop="@dimen/five"
             android:text="@string/big_text"
-            android:textColor="@android:color/white"
-            />
+            android:textColor="@android:color/white"/>
 
         <TextView
             android:id="@+id/tv2"
