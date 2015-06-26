@@ -1,0 +1,47 @@
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ImageView
+        android:id="@+id/image1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_margin="@dimen/five"
+        android:src="@drawable/clock" />
+
+    <TextView
+        android:id="@+id/tv2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/five"
+        android:layout_marginBottom="@dimen/five"
+        android:layout_marginRight="@dimen/five"
+        android:layout_toRightOf="@id/image1"
+        android:text="@string/big_text"
+        android:textColor="@android:color/white"/>
+
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/five"
+        android:layout_marginBottom="@dimen/five"
+        android:layout_marginRight="@dimen/five"
+        android:layout_toRightOf="@id/image1"
+        android:layout_below="@id/tv2"
+        android:text="@string/hello_world"
+        android:textColor="@android:color/white"/>
+
+
+    <TextView
+        android:id="@+id/tv3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/five"
+        android:layout_marginBottom="@dimen/five"
+        android:layout_marginRight="@dimen/five"
+        android:layout_toRightOf="@id/image1"
+        android:layout_below="@id/tv1"
+        android:text="@string/hello_world"
+        android:textColor="@android:color/white"/>
+
+</merge>
