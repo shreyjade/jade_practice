@@ -7,4 +7,9 @@
     <string name="big_text">Android introduced fragments in Android 3.0 (API level 11), primarily to support more dynamic and flexible UI designs on large screens, such as tablets. Because a tablet\'s screen is much larger than that of a handset, there\'s more room to combine and interchange UI components. Fragments allow such designs without the need for you to manage complex changes to the view hierarchy. By dividing the layout of an activity into fragments, you become able to modify the activity\'s appearance at runtime and preserve those changes in a back stack that\'s managed by the activity.</string>
     <string name="title_activity_list_view">ListViewActivity</string>
     <string name="title_activity_grid_view">GridViewActivity</string>
+    <string name="submit">Submit</string>
+    <string name="rate_person">Please Rate The Person</string>
+    <string name="rate">Rate him/her</string>
+    <string name="last_name">Last Name : </string>
+    <string name="first_name">First Name : </string>
 </resources>

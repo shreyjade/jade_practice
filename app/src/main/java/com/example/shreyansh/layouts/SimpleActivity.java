@@ -18,8 +18,8 @@ public class SimpleActivity extends Activity {
         Logger.log("created !!");
     }
 
-    public void onClickTextView(View v) {
-        Toast.makeText(getApplication(), "hello !!", Toast.LENGTH_SHORT).show();
+    public void onClickButton(View v) {
+        Toast.makeText(getApplication(), "Thank You for the feedback !!", Toast.LENGTH_SHORT).show();
     }
 
     @Override

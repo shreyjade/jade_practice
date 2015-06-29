@@ -1,27 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
-    <TableRow>
-        <TextView
-            android:id="@+id/tv1"
-            android:text="@string/hello_world"
-            android:background="@android:color/darker_gray"
-            android:gravity="center"/>
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/tv2"
-            android:text="@string/hello_world"
-            android:layout_marginLeft="@dimen/five"
-            android:gravity="bottom" />
-    </TableRow>
-    <TableRow>
-        <ImageView
-            android:id="@+id/image1"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:src="@drawable/virat" />
-    </TableRow>
+        <TableRow>
 
-</TableLayout>
+            <TextView
+                android:text="@string/rate_person"
+                android:textSize="@dimen/eighteen_text" />
+        </TableRow>
+
+        <TableRow android:layout_marginTop="@dimen/twenty">
+
+            <TextView
+                android:text="@string/first_name"
+                android:textSize="@dimen/eighteen_text" />
+
+            <EditText
+                android:layout_weight="1"
+                android:inputType="text"
+                android:width="@dimen/twenty" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:text="@string/last_name"
+                android:textSize="@dimen/eighteen_text" />
+
+            <EditText
+                android:layout_weight="1"
+                android:inputType="text"
+                android:width="@dimen/twenty" />
+        </TableRow>
+
+
+            <RelativeLayout android:layout_width="fill_parent">
+
+                <TextView
+                    android:id="@+id/tv1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/rate"
+                    android:textSize="@dimen/eighteen_text" />
+
+                <RatingBar
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv1"
+                    android:layout_centerHorizontal="true" />
+            </RelativeLayout>
+
+        <TableRow>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:onClick="onClickButton"
+                android:text="@string/submit" />
+        </TableRow>
+    </TableLayout>
+</ScrollView>
