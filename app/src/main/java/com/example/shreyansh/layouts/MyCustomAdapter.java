@@ -13,7 +13,7 @@ import java.util.List;
 
 public class MyCustomAdapter extends BaseAdapter {
 
-    List<Student> studentList;/* = Student.getStudentDataForListView();*/
+    List<Student> studentList;
     Activity activity;
 
     public MyCustomAdapter(ArrayList<Student> arrayList, Activity activity) {
@@ -39,9 +39,16 @@ public class MyCustomAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         MyViewHolder viewHolder;
 
+        //Logger.log("Position : " + position + "   convertView is null : " + (convertView == null));
+
         if(convertView == null) {
             LayoutInflater inflater = activity.getLayoutInflater();
-            convertView = inflater.inflate(R.layout.clock_text_include, parent, false);
+
+            //for list view
+            //convertView = inflater.inflate(R.layout.clock_text_include, parent, false);
+
+            //for grid view
+            convertView = inflater.inflate(R.layout.clock_text_grid, parent, false);
             viewHolder = new MyViewHolder(convertView);
             convertView.setTag(viewHolder);
         } else {
@@ -60,8 +67,8 @@ public class MyCustomAdapter extends BaseAdapter {
     }
 
     private class MyViewHolder {
-        ImageView image;
-        TextView tv1,tv2,tv3;
+        private ImageView image;
+        private TextView tv1,tv2,tv3;
 
         public MyViewHolder(View view){
             image = (ImageView) view.findViewById(R.id.image1);
