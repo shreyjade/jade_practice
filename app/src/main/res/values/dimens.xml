@@ -7,4 +7,5 @@
     <dimen name="one_hundred">100dp</dimen>
     <dimen name="twenty">20dp</dimen>
     <dimen name="eighteen_text">18sp</dimen>
+    <dimen name="one">1dp</dimen>
 </resources>

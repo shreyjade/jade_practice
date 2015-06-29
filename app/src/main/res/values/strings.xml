@@ -12,4 +12,5 @@
     <string name="rate">Rate him/her</string>
     <string name="last_name">Last Name : </string>
     <string name="first_name">First Name : </string>
+    <string name="title_activity_style_two">StyleTwo</string>
 </resources>
