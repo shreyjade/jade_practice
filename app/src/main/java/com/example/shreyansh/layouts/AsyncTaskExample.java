@@ -10,16 +10,14 @@ import android.widget.TextView;
 
 public class AsyncTaskExample extends Activity {
 
-    AsyncCounter myCounter;
-    Integer initialCounter, totalCount;
+    private static final int TOTAL_COUNT = 15;
     boolean isCounterOn;
+    private AsyncCounter myCounter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_async_task_example);
-        totalCount = 15;
-        initialCounter = 0;
         myCounter = null;
         isCounterOn = false;
 
@@ -27,12 +25,11 @@ public class AsyncTaskExample extends Activity {
             Logger.log("Application started !!");
         } else {
             isCounterOn = savedInstanceState.getBoolean("isCounterOn");
-            if(isCounterOn) {
-                String count = savedInstanceState.getString("counterValue");
-                initialCounter = Integer.parseInt(count);
+            if (isCounterOn) {
+                Integer initialCounter = Integer.parseInt(savedInstanceState.getString("counterValue"));
                 initialCounter++;
                 myCounter = new AsyncCounter();
-                myCounter.execute(initialCounter, totalCount);
+                myCounter.execute(initialCounter, TOTAL_COUNT);
             }
         }
     }
@@ -45,13 +42,13 @@ public class AsyncTaskExample extends Activity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        TextView tv = (TextView) findViewById(R.id.tv);
-        String count = tv.getText().toString();
+        String count = ((TextView) findViewById(R.id.tv)).getText().toString();
         Logger.log("inside save instance state : " + count);
-        if (count.equals("Counter completed !!"))
+        if (count.equals("Counter completed !!")) {
             isCounterOn = false;
-        else
+        } else {
             outState.putString("counterValue", count);
+        }
         outState.putBoolean("isCounterOn", isCounterOn);
         super.onSaveInstanceState(outState);
     }
@@ -59,7 +56,7 @@ public class AsyncTaskExample extends Activity {
     public void onClickButton(View view) {
         if (myCounter == null) {
             myCounter = new AsyncCounter();
-            myCounter.execute(initialCounter, totalCount);
+            myCounter.execute(0, TOTAL_COUNT);
             isCounterOn = true;
         }
     }
@@ -102,11 +99,10 @@ public class AsyncTaskExample extends Activity {
 
         @Override
         protected Integer doInBackground(Integer... params) {
-            for (i = params[0]; i < params[1]; i++) {
+            for (i = params[0]; i < params[1] && !isCancelled(); i++) {
                 try {
-                    publishProgress(i);
                     Thread.sleep(5000, 0);
-                    if (isCancelled()) break;
+                    publishProgress(i);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -117,16 +113,14 @@ public class AsyncTaskExample extends Activity {
         @Override
         protected void onProgressUpdate(Integer... values) {
             Logger.log("Inside progress update !!");
-            TextView tv = (TextView) findViewById(R.id.tv);
-            tv.setText(values[0].toString());
+            ((TextView) findViewById(R.id.tv)).setText(values[0].toString());
             super.onProgressUpdate(values);
         }
 
         @Override
         protected void onPostExecute(Integer in) {
             Logger.log("after finishing AsyncTask !!");
-            TextView tv = (TextView) findViewById(R.id.tv);
-            tv.setText("Counter completed !!");
+            ((TextView) findViewById(R.id.tv)).setText("Counter completed !!");
             super.onPostExecute(in);
         }
 
