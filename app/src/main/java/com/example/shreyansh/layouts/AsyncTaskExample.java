@@ -11,13 +11,30 @@ import android.widget.TextView;
 public class AsyncTaskExample extends Activity {
 
     AsyncCounter myCounter;
+    Integer initialCounter, totalCount;
+    boolean isCounterOn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_async_task_example);
-        Logger.log("Application started !!");
+        totalCount = 15;
+        initialCounter = 0;
         myCounter = null;
+        isCounterOn = false;
+
+        if (savedInstanceState == null) {
+            Logger.log("Application started !!");
+        } else {
+            isCounterOn = savedInstanceState.getBoolean("isCounterOn");
+            if(isCounterOn) {
+                String count = savedInstanceState.getString("counterValue");
+                initialCounter = Integer.parseInt(count);
+                initialCounter++;
+                myCounter = new AsyncCounter();
+                myCounter.execute(initialCounter, totalCount);
+            }
+        }
     }
 
     @Override
@@ -26,10 +43,24 @@ public class AsyncTaskExample extends Activity {
         return true;
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        TextView tv = (TextView) findViewById(R.id.tv);
+        String count = tv.getText().toString();
+        Logger.log("inside save instance state : " + count);
+        if (count.equals("Counter completed !!"))
+            isCounterOn = false;
+        else
+            outState.putString("counterValue", count);
+        outState.putBoolean("isCounterOn", isCounterOn);
+        super.onSaveInstanceState(outState);
+    }
+
     public void onClickButton(View view) {
         if (myCounter == null) {
             myCounter = new AsyncCounter();
-            myCounter.execute();
+            myCounter.execute(initialCounter, totalCount);
+            isCounterOn = true;
         }
     }
 
@@ -37,6 +68,7 @@ public class AsyncTaskExample extends Activity {
         if (myCounter != null) {
             myCounter.cancel(true);
             myCounter = null;
+            isCounterOn = false;
         }
     }
 
@@ -58,7 +90,7 @@ public class AsyncTaskExample extends Activity {
         super.onDestroy();
     }
 
-    private class AsyncCounter extends AsyncTask<Void, Void, Integer> {
+    private class AsyncCounter extends AsyncTask<Integer, Integer, Integer> {
 
         int i;
 
@@ -69,25 +101,38 @@ public class AsyncTaskExample extends Activity {
         }
 
         @Override
-        protected Integer doInBackground(Void... params) {
-            for (i = 0; i < 1000000000l && !(isCancelled()); i++) ;
+        protected Integer doInBackground(Integer... params) {
+            for (i = params[0]; i < params[1]; i++) {
+                try {
+                    publishProgress(i);
+                    Thread.sleep(5000, 0);
+                    if (isCancelled()) break;
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
             return i;
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+            Logger.log("Inside progress update !!");
+            TextView tv = (TextView) findViewById(R.id.tv);
+            tv.setText(values[0].toString());
+            super.onProgressUpdate(values);
         }
 
         @Override
         protected void onPostExecute(Integer in) {
             Logger.log("after finishing AsyncTask !!");
             TextView tv = (TextView) findViewById(R.id.tv);
-            tv.setText(in.toString());
+            tv.setText("Counter completed !!");
             super.onPostExecute(in);
         }
 
         @Override
         protected void onCancelled() {
-            Logger.log("ASYNCTASK CANCELLED !!" + i);
-            TextView tv = (TextView) findViewById(R.id.tv);
-            Integer in = i;
-            tv.setText(in.toString());
+            Logger.log("ASYNCTASK CANCELLED at value " + i);
             super.onCancelled();
         }
     }
