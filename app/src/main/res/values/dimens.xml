@@ -5,4 +5,8 @@
     <dimen name="five">5dp</dimen>
     <dimen name="one_thirty">130dp</dimen>
     <dimen name="one_hundred">100dp</dimen>
+    <dimen name="twenty">20dp</dimen>
+    <dimen name="eighteen_text">18sp</dimen>
+    <dimen name="one">1dp</dimen>
+    <dimen name="fifty">50dp</dimen>
 </resources>
