@@ -11,7 +11,7 @@ import android.widget.TextView;
 public class AsyncTaskExample extends Activity {
 
     private static final int TOTAL_COUNT = 15;
-    boolean isCounterOn;
+    private boolean isCounterOn;
     private AsyncCounter myCounter;
 
     @Override
@@ -26,7 +26,7 @@ public class AsyncTaskExample extends Activity {
         } else {
             isCounterOn = savedInstanceState.getBoolean("isCounterOn");
             if (isCounterOn) {
-                Integer initialCounter = Integer.parseInt(savedInstanceState.getString("counterValue"));
+                int initialCounter = Integer.parseInt(savedInstanceState.getString("counterValue"));
                 initialCounter++;
                 myCounter = new AsyncCounter();
                 myCounter.execute(initialCounter, TOTAL_COUNT);

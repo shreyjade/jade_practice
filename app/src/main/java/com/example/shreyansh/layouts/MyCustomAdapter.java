@@ -16,8 +16,8 @@ public class MyCustomAdapter extends BaseAdapter {
     List<Student> studentList;
     Activity activity;
 
-    public MyCustomAdapter(ArrayList<Student> arrayList, Activity activity) {
-        studentList = arrayList;
+    public MyCustomAdapter(ArrayList<Student> paramStudentList, Activity activity) {
+        studentList = paramStudentList;
         this.activity = activity;
     }
 
@@ -41,7 +41,7 @@ public class MyCustomAdapter extends BaseAdapter {
 
         //Logger.log("Position : " + position + "   convertView is null : " + (convertView == null));
 
-        if(convertView == null) {
+        if (convertView == null) {
             LayoutInflater inflater = activity.getLayoutInflater();
 
             //for list view
@@ -59,8 +59,8 @@ public class MyCustomAdapter extends BaseAdapter {
         viewHolder.tv2.setText(studentList.get(position).fatherName);
         viewHolder.tv3.setText(studentList.get(position).motherName);
 
-        if(position%3 == 0) viewHolder.image.setImageResource(R.drawable.clock);
-        else if (position%3 == 1) viewHolder.image.setImageResource(R.drawable.virat);
+        if (position % 3 == 0) viewHolder.image.setImageResource(R.drawable.clock);
+        else if (position % 3 == 1) viewHolder.image.setImageResource(R.drawable.virat);
         else viewHolder.image.setImageResource(R.drawable.spiderman);
 
         return convertView;
@@ -68,9 +68,9 @@ public class MyCustomAdapter extends BaseAdapter {
 
     private class MyViewHolder {
         private ImageView image;
-        private TextView tv1,tv2,tv3;
+        private TextView tv1, tv2, tv3;
 
-        public MyViewHolder(View view){
+        public MyViewHolder(View view) {
             image = (ImageView) view.findViewById(R.id.image1);
             tv1 = (TextView) view.findViewById(R.id.tv1);
             tv2 = (TextView) view.findViewById(R.id.tv2);

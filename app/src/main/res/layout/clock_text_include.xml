@@ -10,7 +10,7 @@
         android:layout_height="100dp"
         android:layout_centerVertical="true"
         android:layout_margin="@dimen/five"
-        android:src="@drawable/clock" />
+        android:src="@drawable/spiderman" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -27,29 +27,29 @@
             android:layout_marginRight="@dimen/five"
             android:layout_marginTop="@dimen/five"
             android:text="@string/big_text"
-            android:textColor="@android:color/white"/>
+            android:textColor="@android:color/white" />
 
         <TextView
             android:id="@+id/tv2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/tv1"
             android:layout_marginBottom="@dimen/five"
             android:layout_marginRight="@dimen/five"
             android:layout_marginTop="@dimen/five"
             android:text="@string/hello_world"
-            android:textColor="@android:color/white"
-            android:layout_below="@id/tv1"/>
+            android:textColor="@android:color/white" />
 
         <TextView
             android:id="@+id/tv3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/tv2"
             android:layout_marginBottom="@dimen/five"
             android:layout_marginRight="@dimen/five"
             android:layout_marginTop="@dimen/five"
             android:text="@string/hello_world"
-            android:textColor="@android:color/white"
-            android:layout_below="@id/tv2"/>
+            android:textColor="@android:color/white" />
 
     </RelativeLayout>
 </RelativeLayout>

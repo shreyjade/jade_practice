@@ -1,12 +1,12 @@
 <resources>
 
-  <!--  &lt;!&ndash; Base application theme. &ndash;&gt;
-    <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
-        &lt;!&ndash; Customize your theme here. &ndash;&gt;
-    </style>-->
+    <!--  &lt;!&ndash; Base application theme. &ndash;&gt;
+      <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+          &lt;!&ndash; Customize your theme here. &ndash;&gt;
+      </style>-->
 
     <style name="TextStyle">
-        <item name="android:textSize">@dimen/eighteen_text</item>
+        <item name="android:textSize">@dimen/text_eighteen</item>
         <item name="android:textColor">@color/red</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>

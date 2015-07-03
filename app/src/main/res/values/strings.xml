@@ -14,6 +14,9 @@
     <string name="first_name">First Name : </string>
     <string name="title_activity_style_two">StyleTwo</string>
     <string name="title_activity_async_task_example">AsyncTaskExample</string>
+    <string name="title_activity_fragment">Fragment</string>
     <string name="count_number">Count Number</string>
     <string name="stop">Stop</string>
+    <string name="tilt">Tilt phone to see the magic !!</string>
+    <string name="read">Read Text</string>
 </resources>

@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class ListViewActivity extends Activity {
 
-    String[] number = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
+    //String[] number = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,15 +27,17 @@ public class ListViewActivity extends Activity {
 
         ListView listView = (ListView) findViewById(R.id.number_list);
         ArrayList<Student> studentsList = Student.getStudentDataForListView();
-        MyCustomAdapter adapter = new MyCustomAdapter(studentsList, this);
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Integer index = position;
-                Toast.makeText(getApplicationContext(), index.toString(), Toast.LENGTH_SHORT).show();
-            }
-        });
+        if(studentsList != null && studentsList.size()>0){
+            MyCustomAdapter adapter = new MyCustomAdapter(studentsList, this);
+            listView.setAdapter(adapter);
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Integer index = position;
+                    Toast.makeText(getApplicationContext(), index.toString(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
 
     }
 

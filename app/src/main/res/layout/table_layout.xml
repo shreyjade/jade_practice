@@ -12,57 +12,61 @@
 
             <TextView
                 android:text="@string/rate_person"
-                android:textSize="@dimen/eighteen_text" />
+                android:textSize="@dimen/text_eighteen" />
         </TableRow>
 
         <TableRow android:layout_marginTop="@dimen/twenty">
 
             <TextView
                 android:text="@string/first_name"
-                android:textSize="@dimen/eighteen_text" />
+                android:textSize="@dimen/text_eighteen" />
 
             <EditText
+                android:id="@+id/first_name"
                 android:layout_weight="1"
-                android:inputType="text"
-                android:width="@dimen/twenty" />
+                android:width="@dimen/twenty"
+                android:inputType="text" />
         </TableRow>
 
         <TableRow>
 
             <TextView
                 android:text="@string/last_name"
-                android:textSize="@dimen/eighteen_text" />
+                android:textSize="@dimen/text_eighteen" />
 
             <EditText
+                android:id="@+id/last_name"
                 android:layout_weight="1"
-                android:inputType="text"
-                android:width="@dimen/twenty" />
+                android:width="@dimen/twenty"
+                android:inputType="text" />
         </TableRow>
 
 
-            <RelativeLayout android:layout_width="fill_parent">
+        <RelativeLayout android:layout_width="fill_parent">
 
-                <TextView
-                    android:id="@+id/tv1"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:text="@string/rate"
-                    android:textSize="@dimen/eighteen_text" />
+            <TextView
+                android:id="@+id/tv1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="@string/rate"
+                android:textSize="@dimen/text_eighteen" />
 
-                <RatingBar
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/tv1"
-                    android:layout_centerHorizontal="true" />
-            </RelativeLayout>
+            <RatingBar
+                android:id="@+id/rating_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv1"
+                android:layout_centerHorizontal="true"
+                android:numStars="5" />
+        </RelativeLayout>
 
-        <TableRow>
+        <!--<TableRow>
 
             <Button
                 android:layout_width="wrap_content"
                 android:onClick="onClickButton"
                 android:text="@string/submit" />
-        </TableRow>
+        </TableRow>-->
     </TableLayout>
 </ScrollView>
