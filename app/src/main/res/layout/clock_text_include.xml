@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@android:color/black">
+    android:background="@android:color/white">
 
     <ImageView
         android:id="@+id/image1"
@@ -13,7 +13,8 @@
         android:src="@drawable/spiderman" />
 
     <RelativeLayout
-        android:layout_width="match_parent"
+        android:id="@+id/all_text"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_toRightOf="@id/image1"
@@ -21,35 +22,41 @@
 
         <TextView
             android:id="@+id/tv1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/TextStyle"
             android:layout_marginBottom="@dimen/five"
             android:layout_marginRight="@dimen/five"
             android:layout_marginTop="@dimen/five"
-            android:text="@string/big_text"
-            android:textColor="@android:color/white" />
+            android:text="@string/hello_world"
+            android:textColor="@android:color/black" />
 
         <TextView
             android:id="@+id/tv2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/TextStyle"
             android:layout_below="@id/tv1"
             android:layout_marginBottom="@dimen/five"
             android:layout_marginRight="@dimen/five"
             android:layout_marginTop="@dimen/five"
             android:text="@string/hello_world"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/black" />
 
         <TextView
             android:id="@+id/tv3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/TextStyle"
             android:layout_below="@id/tv2"
             android:layout_marginBottom="@dimen/five"
             android:layout_marginRight="@dimen/five"
             android:layout_marginTop="@dimen/five"
             android:text="@string/hello_world"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/black" />
 
     </RelativeLayout>
+
+    <Button
+        android:id="@+id/cancel_button"
+        android:layout_width="@dimen/fifty"
+        android:layout_height="@dimen/fifty"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/all_text"
+        android:text="@string/cancel" />
+
 </RelativeLayout>

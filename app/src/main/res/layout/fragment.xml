@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/view"
                 android:layout_toLeftOf="@+id/view"
-                android:onClick="onClickButton1"
+                android:onClick="onClickButton"
                 android:text="@string/read" />
 
             <Button
@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/view"
                 android:layout_toRightOf="@id/view"
-                android:onClick="onClickButton2"
+                android:onClick="onClickButton"
                 android:text="@string/rate" />
 
         </RelativeLayout>

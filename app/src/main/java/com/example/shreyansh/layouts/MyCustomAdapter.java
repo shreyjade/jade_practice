@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,21 +14,23 @@ import java.util.List;
 
 public class MyCustomAdapter extends BaseAdapter {
 
-    List<Student> studentList;
-    Activity activity;
+    private List<Student> mStudentList;
+    private Activity mActivity;
+    private View.OnClickListener mDeleteRecordListner;
 
-    public MyCustomAdapter(ArrayList<Student> paramStudentList, Activity activity) {
-        studentList = paramStudentList;
-        this.activity = activity;
+    public MyCustomAdapter(Activity paramActivity, ArrayList<Student> paramStudentList, View.OnClickListener paramListner) {
+        mStudentList = paramStudentList;
+        mActivity = paramActivity;
+        mDeleteRecordListner = paramListner;
     }
 
     public int getCount() {
-        return studentList.size();
+        return mStudentList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return studentList.get(position);
+        return mStudentList.get(position);
     }
 
     @Override
@@ -42,22 +45,25 @@ public class MyCustomAdapter extends BaseAdapter {
         //Logger.log("Position : " + position + "   convertView is null : " + (convertView == null));
 
         if (convertView == null) {
-            LayoutInflater inflater = activity.getLayoutInflater();
+            LayoutInflater inflater = mActivity.getLayoutInflater();
 
             //for list view
-            //convertView = inflater.inflate(R.layout.clock_text_include, parent, false);
+            convertView = inflater.inflate(R.layout.clock_text_include, parent, false);
 
             //for grid view
-            convertView = inflater.inflate(R.layout.clock_text_grid, parent, false);
+            //convertView = inflater.inflate(R.layout.clock_text_grid, parent, false);
+
             viewHolder = new MyViewHolder(convertView);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (MyViewHolder) convertView.getTag();
         }
 
-        viewHolder.tv1.setText(studentList.get(position).name);
-        viewHolder.tv2.setText(studentList.get(position).fatherName);
-        viewHolder.tv3.setText(studentList.get(position).motherName);
+        viewHolder.textView1.setText(mStudentList.get(position).getName());
+        viewHolder.textView2.setText(mStudentList.get(position).getFatherName());
+        viewHolder.textView3.setText(mStudentList.get(position).getMotherName());
+
+        ((Button) convertView.findViewById(R.id.cancel_button)).setOnClickListener(mDeleteRecordListner);
 
         if (position % 3 == 0) viewHolder.image.setImageResource(R.drawable.clock);
         else if (position % 3 == 1) viewHolder.image.setImageResource(R.drawable.virat);
@@ -68,13 +74,13 @@ public class MyCustomAdapter extends BaseAdapter {
 
     private class MyViewHolder {
         private ImageView image;
-        private TextView tv1, tv2, tv3;
+        private TextView textView1, textView2, textView3;
 
         public MyViewHolder(View view) {
             image = (ImageView) view.findViewById(R.id.image1);
-            tv1 = (TextView) view.findViewById(R.id.tv1);
-            tv2 = (TextView) view.findViewById(R.id.tv2);
-            tv3 = (TextView) view.findViewById(R.id.tv3);
+            textView1 = (TextView) view.findViewById(R.id.tv1);
+            textView2 = (TextView) view.findViewById(R.id.tv2);
+            textView3 = (TextView) view.findViewById(R.id.tv3);
         }
     }
 }

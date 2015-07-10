@@ -11,7 +11,6 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-
 public class GridViewActivity extends Activity {
 
     @Override
@@ -21,8 +20,18 @@ public class GridViewActivity extends Activity {
 
         GridView gridView = (GridView) findViewById(R.id.grid_view);
         ArrayList<Student> studentsList = Student.getStudentDataForListView();
-        MyCustomAdapter adapter = new MyCustomAdapter(studentsList, this);
-        gridView.setAdapter(adapter);
+
+        /*
+        below 2 lines are commented because MyCustomAdapter has been changed and this class hasn't been revised according to it.
+        send OnClickListner object in MyCustomAdapter constructor to make it work.
+        */
+//        MyCustomAdapter adapter = new MyCustomAdapter(this, studentsList);
+//       gridView.setAdapter(adapter);
+
+/*        When user click on the item, it displays its index number in the list.
+        Remove if index not required.
+ */
+
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -30,7 +39,6 @@ public class GridViewActivity extends Activity {
                 Toast.makeText(getApplicationContext(), index.toString(), Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
     @Override
@@ -42,11 +50,9 @@ public class GridViewActivity extends Activity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 }

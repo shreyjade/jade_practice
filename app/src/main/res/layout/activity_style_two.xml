@@ -11,8 +11,8 @@
 
         <EditText
             style="@style/TextStyle"
-            android:inputType="text"
-            android:gravity="end"/>
+            android:gravity="end"
+            android:inputType="text" />
 
         <TextView
             style="@style/TextStyle"

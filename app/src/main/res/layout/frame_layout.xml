@@ -2,40 +2,44 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/background_light"
         android:layout_gravity="start"
+        android:onClick="onClickTextView"
         android:text="AAAAAAAAAAAAAAAAAAAA"
-        android:onClick="onClickTextView"/>
+        android:textColor="@android:color/background_light" />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/black"
         android:layout_gravity="start"
+        android:onClick="onClickTextView"
         android:text="BBBBBBBBBBBBBBB"
-        android:onClick="onClickTextView"/>
+        android:textColor="@android:color/black" />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/secondary_text_dark"
         android:layout_gravity="start"
+        android:onClick="onClickTextView"
         android:text="CCCCCCCCCCC"
-        android:onClick="onClickTextView"/>
+        android:textColor="@android:color/secondary_text_dark" />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/secondary_text_light"
         android:layout_gravity="start"
+        android:onClick="onClickTextView"
         android:text="DDD"
-        android:onClick="onClickTextView"/>
+        android:textColor="@android:color/secondary_text_light" />
 
     <Spinner
         android:id="@+id/spinner_day"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/one_hundred"/>
+        android:layout_marginTop="@dimen/one_hundred" />
 
 </FrameLayout>
 

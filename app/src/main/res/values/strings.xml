@@ -19,4 +19,6 @@
     <string name="stop">Stop</string>
     <string name="tilt">Tilt phone to see the magic !!</string>
     <string name="read">Read Text</string>
+    <string name="yo">yo</string>
+    <string name="cancel">X</string>
 </resources>

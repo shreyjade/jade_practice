@@ -14,6 +14,7 @@
             style="@style/ButtonStyle"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/fifty"
+            android:onClick="onStart"
             android:text="@string/count_number" />
 
         <Button
@@ -30,6 +31,6 @@
             style="@style/TextStyle"
             android:layout_below="@id/button2"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/fifty"/>
+            android:layout_marginTop="@dimen/fifty" />
     </RelativeLayout>
 </ScrollView>

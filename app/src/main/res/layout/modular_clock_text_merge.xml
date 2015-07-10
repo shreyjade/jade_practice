@@ -12,37 +12,38 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@android:color/black">
+            android:background="@android:color/white"
+            android:orientation="vertical">
 
-            <include layout="@layout/clock_text_merge"/>
+            <include layout="@layout/clock_text_merge" />
 
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@android:color/black">
+            android:background="@android:color/white"
+            android:orientation="vertical">
 
-            <include layout="@layout/clock_text_merge"/>
+            <include layout="@layout/clock_text_merge" />
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:background="@android:color/white"
+            android:orientation="vertical">
 
-            android:background="@android:color/black">
-            <include layout="@layout/clock_text_merge"/>
+            <include layout="@layout/clock_text_merge" />
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@android:color/black">
-            <include layout="@layout/clock_text_merge"/>
+            android:background="@android:color/white"
+            android:orientation="vertical">
+
+            <include layout="@layout/clock_text_merge" />
         </RelativeLayout>
 
     </LinearLayout>

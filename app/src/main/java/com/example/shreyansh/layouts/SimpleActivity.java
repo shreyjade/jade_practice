@@ -1,14 +1,9 @@
 package com.example.shreyansh.layouts;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
 
 public class SimpleActivity extends Activity {
 
@@ -18,10 +13,12 @@ public class SimpleActivity extends Activity {
         setContentView(R.layout.style_1);
     }
 
+/*
     public void onClickButton(View v) {
         Intent call = new Intent(this, StyleTwo.class);
         startActivity(call);
     }
+*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

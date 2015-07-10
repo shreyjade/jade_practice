@@ -1,36 +1,48 @@
 package com.example.shreyansh.layouts;
 
 import android.app.Activity;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+/**
+ * This class creates a counter which counts values in AsyncTask and stop the counter if user leaves
+ * activity.
+ */
 public class AsyncTaskExample extends Activity {
 
     private static final int TOTAL_COUNT = 15;
-    private boolean isCounterOn;
-    private AsyncCounter myCounter;
+    private boolean mIsCounterOn;
+    private AsyncCounter mMyCounter;
+    private String mCounterState = "Counter State";
+    private String mCounterValue = "Counter Value";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_async_task_example);
-        myCounter = null;
-        isCounterOn = false;
+        mMyCounter = null;
+        mIsCounterOn = false;
 
-        if (savedInstanceState == null) {
-            Logger.log("Application started !!");
-        } else {
-            isCounterOn = savedInstanceState.getBoolean("isCounterOn");
-            if (isCounterOn) {
-                int initialCounter = Integer.parseInt(savedInstanceState.getString("counterValue"));
+        if (savedInstanceState != null) {
+            /*
+             If the counter was on and the activity was destroyed, then on recreating the activity,
+             counter is initialized to the previous value and the AsyncTask is started again.
+             */
+            mIsCounterOn = savedInstanceState.getBoolean(mCounterState);
+            if (mIsCounterOn) {
+                int initialCounter = Integer.parseInt(savedInstanceState.getString(mCounterValue));
+                // initialCounter is incremented by one because the AsyncTask while exiting, completed the count
+                // but the value is not updated as it was in different thread.
                 initialCounter++;
-                myCounter = new AsyncCounter();
-                myCounter.execute(initialCounter, TOTAL_COUNT);
+
+                mMyCounter = new AsyncCounter((TextView) findViewById(R.id.tv));
+                mMyCounter.execute(initialCounter, TOTAL_COUNT);
             }
+        } else {
+            Logger.log("Application started !!");
         }
     }
 
@@ -38,35 +50,6 @@ public class AsyncTaskExample extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_async_task_example, menu);
         return true;
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        String count = ((TextView) findViewById(R.id.tv)).getText().toString();
-        Logger.log("inside save instance state : " + count);
-        if (count.equals("Counter completed !!")) {
-            isCounterOn = false;
-        } else {
-            outState.putString("counterValue", count);
-        }
-        outState.putBoolean("isCounterOn", isCounterOn);
-        super.onSaveInstanceState(outState);
-    }
-
-    public void onClickButton(View view) {
-        if (myCounter == null) {
-            myCounter = new AsyncCounter();
-            myCounter.execute(0, TOTAL_COUNT);
-            isCounterOn = true;
-        }
-    }
-
-    public void onButtonStop(View view) {
-        if (myCounter != null) {
-            myCounter.cancel(true);
-            myCounter = null;
-            isCounterOn = false;
-        }
     }
 
     @Override
@@ -78,56 +61,58 @@ public class AsyncTaskExample extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * If the counter wasn't running, then start it with 0 value or else do nothing.
+     * We don't want to start counter if the user accidentally tapped the start button twice.
+     */
+    public void onStart(View view) {
+        if (mMyCounter == null) {
+            mMyCounter = new AsyncCounter((TextView) findViewById(R.id.tv));
+            mMyCounter.execute(0, TOTAL_COUNT);
+            mIsCounterOn = true;
+        }
+    }
+
+    /**
+     * Stop the counter if the counter was on or else do nothing.
+     */
+    public void onButtonStop(View view) {
+        stopCounter();
+    }
+
+    /**
+     * Save the counter value if counter was on before user leaves the application.
+     */
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        String count = ((TextView) findViewById(R.id.tv)).getText().toString();
+        Logger.log("inside save instance state : " + count);
+        if (count.equals("Counter completed !!")) {
+            mIsCounterOn = false;
+        } else {
+            outState.putString(mCounterValue, count);
+        }
+        outState.putBoolean(mCounterState, mIsCounterOn);
+        super.onSaveInstanceState(outState);
+    }
+
+    /**
+     * Stop the counter if the activity get's destroyed as we are displaying the value on the activity,
+     * If activity is destroyed then the counter(AsyncTask) should not run.
+     */
     @Override
     protected void onDestroy() {
-        if (myCounter != null) {
-            myCounter.cancel(true);
-            myCounter = null;
-        }
+        stopCounter();
         super.onDestroy();
     }
 
-    private class AsyncCounter extends AsyncTask<Integer, Integer, Integer> {
-
-        int i;
-
-        @Override
-        protected void onPreExecute() {
-            Logger.log("before starting AsyncTask !!");
-            super.onPreExecute();
-        }
-
-        @Override
-        protected Integer doInBackground(Integer... params) {
-            for (i = params[0]; i < params[1] && !isCancelled(); i++) {
-                try {
-                    Thread.sleep(5000, 0);
-                    publishProgress(i);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-            return i;
-        }
-
-        @Override
-        protected void onProgressUpdate(Integer... values) {
-            Logger.log("Inside progress update !!");
-            ((TextView) findViewById(R.id.tv)).setText(values[0].toString());
-            super.onProgressUpdate(values);
-        }
-
-        @Override
-        protected void onPostExecute(Integer in) {
-            Logger.log("after finishing AsyncTask !!");
-            ((TextView) findViewById(R.id.tv)).setText("Counter completed !!");
-            super.onPostExecute(in);
-        }
-
-        @Override
-        protected void onCancelled() {
-            Logger.log("ASYNCTASK CANCELLED at value " + i);
-            super.onCancelled();
+    /**
+     * Stop the counter.
+     */
+    private void stopCounter() {
+        if (mMyCounter != null) {
+            mMyCounter.cancel(true);
+            mMyCounter = null;
         }
     }
 }

@@ -9,9 +9,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:columnWidth="@dimen/one_thirty"
-        android:numColumns="auto_fit"
-        android:verticalSpacing="@dimen/five"
         android:horizontalSpacing="@dimen/five"
-        android:stretchMode="columnWidth" />
+        android:numColumns="auto_fit"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="@dimen/five" />
 
 </RelativeLayout>

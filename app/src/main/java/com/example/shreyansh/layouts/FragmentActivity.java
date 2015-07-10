@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 
 public class FragmentActivity extends Activity {
 
@@ -19,18 +20,17 @@ public class FragmentActivity extends Activity {
         fragmentManager = getFragmentManager();
     }
 
-    public void onClickButton1(View view) {
-        FragmentOne fragmentOne = new FragmentOne();
+    public void onClickButton(View view) {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.my_fragment, fragmentOne, "one");
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
-    }
-
-    public void onClickButton2(View view) {
-        FragmentTwo fragmentTwo = new FragmentTwo();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.my_fragment, fragmentTwo, "two");
+        Button clickedButton = (Button) view;
+        String buttonText = (String) clickedButton.getText();
+        if (buttonText.contentEquals("READ TEXT")) {
+            FragmentOne fragmentOne = new FragmentOne();
+            fragmentTransaction.replace(R.id.my_fragment, fragmentOne, "one");
+        } else {
+            FragmentTwo fragmentTwo = new FragmentTwo();
+            fragmentTransaction.replace(R.id.my_fragment, fragmentTwo, "two");
+        }
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
