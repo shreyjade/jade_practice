@@ -4,10 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -15,7 +12,6 @@ public class ListViewActivity extends Activity {
 
     //String[] number = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
     private MyCustomAdapter mAdapter;
-    private ListView mListView;
     private ArrayList<Student> mStudentsList;
 
     Activity getCurrentActivity() {
@@ -32,7 +28,7 @@ public class ListViewActivity extends Activity {
         listView.setAdapter(adapter);
         */
 
-        mListView = (ListView) findViewById(R.id.number_list);
+        ListView listView = (ListView) findViewById(R.id.number_list);
         mStudentsList = Student.getStudentDataForListView();
         if (mStudentsList != null && mStudentsList.size() > 0) {
 
@@ -49,22 +45,21 @@ public class ListViewActivity extends Activity {
                 }
             });*/
 
-            /*
-            It deletes the record from list and refresh the view.
-            */
-            OnClickListener deleteRecord = new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int position = mListView.getPositionForView(v);
-                    if (position != ListView.INVALID_POSITION) {
-                        Toast.makeText(getApplicationContext(), "Record removed !!", Toast.LENGTH_SHORT).show();
-                        mStudentsList.remove(position);
-                        mAdapter.notifyDataSetChanged();
-                    }
-                }
-            };
-            mAdapter = new MyCustomAdapter(getCurrentActivity(), mStudentsList, deleteRecord);
-            mListView.setAdapter(mAdapter);
+            mAdapter = new MyCustomAdapter(getCurrentActivity(), mStudentsList);
+            listView.setAdapter(mAdapter);
+        }
+    }
+
+    /*
+    It deletes the record from list and refreshes the view. It will not delete the image because it
+    is not part of the list. To delete the image, remove image setting code from MyCustomAdapter and
+    add it to Student class.
+    */
+    public void deleteRecord(int position){
+        mStudentsList.remove(position);
+        if(mAdapter != null){
+            mAdapter.setmStudentList(mStudentsList);
+            mAdapter.notifyDataSetChanged();
         }
     }
 
