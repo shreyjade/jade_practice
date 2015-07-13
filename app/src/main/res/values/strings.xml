@@ -21,4 +21,10 @@
     <string name="read">Read Text</string>
     <string name="yo">yo</string>
     <string name="cancel">X</string>
+
+    <string name="get_contacts">Get Contacts</string>
+    <string name="get_apps">Get Apps</string>
+    <string name="start_service">Start Service</string>
+    <string name="title_activity_activity2">Activity2</string>
+
 </resources>

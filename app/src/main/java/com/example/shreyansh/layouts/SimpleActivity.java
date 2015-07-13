@@ -1,24 +1,19 @@
 package com.example.shreyansh.layouts;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 public class SimpleActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.style_1);
+        setContentView(R.layout.activity1);
     }
-
-/*
-    public void onClickButton(View v) {
-        Intent call = new Intent(this, StyleTwo.class);
-        startActivity(call);
-    }
-*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -31,5 +26,10 @@ public class SimpleActivity extends Activity {
         int id = item.getItemId();
         if (id == R.id.action_settings) return true;
         return super.onOptionsItemSelected(item);
+    }
+
+    public void getAppsOnButtonClick(View view) {
+        Intent contactsIntent = new Intent(this, AppListActivity.class);
+        startActivity(contactsIntent);
     }
 }

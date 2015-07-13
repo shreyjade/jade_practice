@@ -15,10 +15,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-/*
-This class was part of other application. Basically this class was calling date service by using
-messenger service to get the date.
-*/
+/**
+ * This class was part of other application. Basically this class was calling date service by using
+ messenger service to get the date.
+ */
 
 public class MessengerActivity extends Activity {
 
@@ -37,9 +37,9 @@ public class MessengerActivity extends Activity {
 
     private Messenger messenger = null;
     private boolean isBound = false;
-    Messenger myMessenger = new Messenger(new MyHandler());
+    private Messenger myMessenger = new Messenger(new MyHandler());
 
-    ServiceConnection connection = new ServiceConnection() {
+    private ServiceConnection connection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
             isBound = true;
