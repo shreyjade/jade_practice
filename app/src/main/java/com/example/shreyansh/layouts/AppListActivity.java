@@ -16,13 +16,30 @@ public class AppListActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity2);
 
-        ListView listView = (ListView) findViewById(R.id.contact_list);
-        Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
-        mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
-        List pkgAppsList = getPackageManager().queryIntentActivities(mainIntent, 0);
+        AppAdapter mAdapter;
+        ListView listView = (ListView) findViewById(R.id.content_list);
+        int flag = getIntent().getIntExtra("app or contact",0);
 
-        AppAdapter mAdapter = new AppAdapter(this, pkgAppsList);
-        listView.setAdapter(mAdapter);
+        //Get app data in listview
+        if (flag==1) {
+            Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
+            mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+            List pkgAppsList = getPackageManager().queryIntentActivities(mainIntent, 0);
+            if (pkgAppsList != null) {
+                mAdapter = new AppAdapter(this, pkgAppsList);
+                listView.setAdapter(mAdapter);
+            }
+        }
+
+        //Get contact data in listview
+        else if (flag == 2){
+            //Write code to get contacts and set it in list. Then set adapter.
+        }
+
+        //Error in reading text on button
+        else {
+            Logger.log("Error in reading text on button !!");
+        }
    }
 
     @Override

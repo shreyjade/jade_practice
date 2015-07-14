@@ -7,14 +7,16 @@
     <Button
         style="@style/ButtonStyleGeneral"
         android:text="@string/get_apps"
-        android:onClick="getAppsOnButtonClick"/>
+        android:onClick="getContentOnButtonClick"/>
 
     <Button
         style="@style/ButtonStyleGeneral"
-        android:text="@string/get_contacts"/>
+        android:text="@string/get_contacts"
+        android:onClick="getContentOnButtonClick"/>
 
     <Button
         style="@style/ButtonStyleGeneral"
-        android:text="@string/start_service"/>
+        android:text="@string/start_service"
+        android:onClick="startServiceOnButtonClick"/>
 
 </LinearLayout>
