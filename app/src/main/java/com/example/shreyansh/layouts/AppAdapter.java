@@ -74,6 +74,7 @@ public class AppAdapter extends BaseAdapter {
 
         return convertView;
     }
+
     private class MyViewHolder {
         private ImageView image;
         private TextView textView1, textView2;
